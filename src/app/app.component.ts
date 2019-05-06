@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, EventEmitter, Output } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 
 export interface Food {
   value: string;
@@ -11,7 +12,29 @@ export interface Food {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'frontend';
+  title = 'SaleFood';
+  @ViewChild('sidenav') sidenav: MatSidenav;
+
+  public reason: String = '';
+  public shouldRun: boolean;
+  public navBarClicked: boolean;
+
+  constructor() { }
+
+  ngOnInit() {
+    this.shouldRun = true;
+    this.navBarClicked = false;
+  }
+
+  toggleSideNav(event: any) {
+    this.sidenav.toggle();
+    this.navBarClicked = !this.navBarClicked;
+  }
+
+  close(reason: string) {
+    this.reason = reason;
+    this.sidenav.close();
+  }
 
   foods: Food[] = [
     {value: 'steak-0', viewValue: 'Steak'},

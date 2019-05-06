@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="toggleNavBar($event)"><mat-icon >{{menuIcon.name}}</mat-icon></button>
+    <span>route.title</span>
+    <span class="sidebar-spacer"></span>
+    <mat-icon matBadge="{{countItemCartList}}" matBadgeColor="warn" class="sidebar-icon" aria-hidden="false" >shopping_cart</mat-icon>
+  </mat-toolbar-row>
+
+</mat-toolbar>

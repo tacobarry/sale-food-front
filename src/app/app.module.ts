@@ -1,23 +1,21 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { NgModule } from '@angular/core';
-import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { MatSelectModule } from '@angular/material/select';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
+import { ProductsComponent } from './navigation/products/products.component';
+import { ProductComponent } from './components/product/product.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProductsComponent,
+    ProductComponent
   ],
   imports: [
     AppRoutingModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatSelectModule
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
