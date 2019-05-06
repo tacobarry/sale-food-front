@@ -11,7 +11,7 @@ export class SandwichService {
     private http: HttpClient
   ) { }
 
-  public getAllSandwiches() {
+  public getAllSandwiches(): Promise<any> {
     const header: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
@@ -22,7 +22,7 @@ export class SandwichService {
       observe: 'response'
     })
       .toPromise()
-      .then((resposta) => resposta)
-      .catch((err: any) => console.log(err));
+      .then((resposta) => resposta.body)
+      .catch(err => console.log(err));
   }
 }
