@@ -15,7 +15,7 @@ export class AppComponent {
   title = 'SaleFood';
   @ViewChild('sidenav') sidenav: MatSidenav;
 
-  public reason: String = '';
+  public reason: string = '';
   public shouldRun: boolean;
   public navBarClicked: boolean;
 

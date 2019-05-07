@@ -8,6 +8,7 @@ import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angul
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -25,6 +26,7 @@ import { FooterComponent } from './components/footer/footer.component';
     MatIconModule,
     MatBadgeModule,
     MatButtonModule,
+    MatCardModule,
     MatGridListModule,
     MatSelectModule,
     MatSidenavModule,
@@ -40,6 +42,7 @@ import { FooterComponent } from './components/footer/footer.component';
     MatIconModule,
     MatBadgeModule,
     MatButtonModule,
+    MatCardModule,
     MatGridListModule,
     MatSelectModule,
     MatSidenavModule,

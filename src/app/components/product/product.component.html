@@ -1,19 +1,18 @@
-<!-- <mat-card class="example-card">
+<mat-card class="example-card">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>{{product.name}}</mat-card-title>
-    <mat-card-subtitle>{{product.value}}</mat-card-subtitle>
+    <mat-card-subtitle>R$ {{product.value}}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <img mat-card-image src="{{product.imageUrl}}" alt="Photo of {{product.name}}">
   <mat-card-content>
-    <ul *ngFor="product.ingredientList as ingredient">
-      <li>{{ingredient.name}}</li>
+    <p> Ingredientes:</p><br/>
+    <ul>
+      <li *ngFor="let ing of product.ingredients">{{ing.name}}</li>
     </ul>
   </mat-card-content>
   <mat-card-actions>
     <button mat-icon-button (click)="addProduct(product.id)"><mat-icon >add_shopping_cart</mat-icon></button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
-</mat-card> -->
 
-<p>product {{product.name}} works!</p>
+  </mat-card-actions>
+</mat-card>

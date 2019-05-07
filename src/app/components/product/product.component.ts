@@ -1,11 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
 import { Sandwich } from 'src/app/core/model/sandwich.model';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.sass']
+  styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
   @Input()
@@ -14,6 +13,11 @@ export class ProductComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.product);
+  }
+
+  addProduct(id: Number) {
+    console.log('ID:', id);
   }
 
 }

@@ -6,7 +6,8 @@ export class Sandwich {
     private _id: number,
     private _name: string,
     private _value: number,
-    private _ingredientList: Ingredient[]
+    private _ingredientList: Ingredient[],
+    private _imageUrl: string
   ) {
     this._id = _id;
     this._name = _name;
@@ -48,5 +49,15 @@ export class Sandwich {
 
   public addIngredient(i: Ingredient) {
     this._ingredientList.push(i);
+  }
+
+  // transient
+  set imageUrl(url: string) {
+    this._imageUrl = url;
+  }
+
+  // transient
+  get imageUrl(): string {
+    return this._imageUrl;
   }
 }
