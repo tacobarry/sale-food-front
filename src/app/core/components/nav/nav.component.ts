@@ -34,22 +34,24 @@ export class NavComponent implements OnInit, OnChanges {
 
   private checkRoute(route: ActivatedRoute) {
     // console.log(route.url.value[0].path);
-    switch (route.url.value[0].path) {
-      case '/produtos': {
-        this.route.title = 'Produtos';
-        break;
-      }
-      case '/carrinho': {
-        this.route.title = 'Carrinho';
-        break;
-      }
-      case '/item': {
-        this.route.title = 'Item do Pedido';
-        break;
-      }
-      default : {
-        this.route.title = 'Produtos';
-        break;
+    if (route.url['value'] !== undefined) {
+      switch (route.url['value'][0].path) {
+        case '/produtos': {
+          this.route.title = 'Produtos';
+          break;
+        }
+        case '/carrinho': {
+          this.route.title = 'Carrinho';
+          break;
+        }
+        case '/item': {
+          this.route.title = 'Item do Pedido';
+          break;
+        }
+        default : {
+          this.route.title = 'Produtos';
+          break;
+        }
       }
     }
   }

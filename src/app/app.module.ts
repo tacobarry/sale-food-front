@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { ProductsComponent } from './navigation/products/products.component';
 import { ProductComponent } from './components/product/product.component';
+import { ItemCartModule } from './navigation/item-cart/item-cart.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ProductComponent } from './components/product/product.component';
   ],
   imports: [
     AppRoutingModule,
-    CoreModule
+    CoreModule,
+    ItemCartModule
   ],
   providers: [],
   bootstrap: [AppComponent]
