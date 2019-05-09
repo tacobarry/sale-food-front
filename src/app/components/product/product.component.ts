@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Sandwich } from 'src/app/core/model/sandwich.model';
-import { ItemCartService } from 'src/app/core/services/item-cart.service';
-import { ItemCart } from 'src/app/core/model/item-cart.model';
+import { Sandwich } from '../../core/model/sandwich.model';
+import { ItemCartService } from '../../core/services/item-cart.service';
+import { ItemCart } from '../../core/model/item-cart.model';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({

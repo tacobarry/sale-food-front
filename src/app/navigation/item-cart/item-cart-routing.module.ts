@@ -14,7 +14,7 @@ const itemCartRoutes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(itemCartRoutes)],
-  declarations: [NewComponent],
+  declarations: [],
   exports: [RouterModule]
 })
 export class ItemCartRoutingModule { }

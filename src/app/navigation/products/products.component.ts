@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Sandwich } from 'src/app/core/model/sandwich.model';
+import { Sandwich } from '../../core/model/sandwich.model';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { SandwichService } from '../../core/services/sandwich.service';
-import { SandwichEnum } from 'src/app/core/enum/sandwich-enum.enum';
+import { SandwichEnum } from '../../core/enum/sandwich-enum.enum';
 
 @Component({
   selector: 'app-products',
