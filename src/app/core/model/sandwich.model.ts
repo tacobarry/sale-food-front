@@ -6,13 +6,13 @@ export class Sandwich {
     private _id: number,
     private _name: string,
     private _value: number,
-    private _ingredientList: Ingredient[],
+    private _ingredients: Ingredient[],
     private _imageUrl: string
   ) {
     this._id = _id;
     this._name = _name;
     this._value = _value;
-    this._ingredientList = _ingredientList;
+    this._ingredients = _ingredients;
   }
 
   set id(id: number) {
@@ -39,16 +39,16 @@ export class Sandwich {
     return this._value;
   }
 
-  set ingredientList(list: Ingredient[]) {
-    this._ingredientList = list;
+  set ingredients(list: Ingredient[]) {
+    this._ingredients = list;
   }
 
-  get ingredientList(): Ingredient[] {
-    return this._ingredientList;
+  get ingredients(): Ingredient[] {
+    return this._ingredients;
   }
 
   public addIngredient(i: Ingredient) {
-    this._ingredientList.push(i);
+    this._ingredients.push(i);
   }
 
   // transient

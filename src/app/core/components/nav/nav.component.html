@@ -3,7 +3,9 @@
     <button mat-icon-button (click)="toggleNavBar($event)"><mat-icon >{{menuIcon.name}}</mat-icon></button>
     <span>{{route.title}}</span>
     <span class="sidebar-spacer"></span>
-    <mat-icon matBadge="{{countItemCartList}}" matBadgeColor="warn" class="sidebar-icon" aria-hidden="false" >shopping_cart</mat-icon>
+    <button mat-icon-button>
+      <mat-icon aria-label="Compra" matBadge="{{countItemCartList}}" matBadgeColor="warn" class="sidebar-icon" aria-hidden="false" >shopping_cart</mat-icon>
+    </button>
   </mat-toolbar-row>
 
 </mat-toolbar>

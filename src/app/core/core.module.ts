@@ -9,28 +9,42 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSliderModule } from '@angular/material/slider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 
+const material = [
+  MatIconModule,
+  MatBadgeModule,
+  MatButtonModule,
+  MatCardModule,
+  MatExpansionModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatInputModule,
+  MatListModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatToolbarModule
+];
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     CommonModule,
     HttpClientModule,
-    MatIconModule,
-    MatBadgeModule,
-    MatButtonModule,
-    MatCardModule,
-    MatGridListModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatToolbarModule
+    ReactiveFormsModule,
+    ...material
   ],
   declarations: [
     FooterComponent,
@@ -39,15 +53,9 @@ import { FooterComponent } from './components/footer/footer.component';
   exports: [
     CommonModule,
     FooterComponent,
-    MatIconModule,
-    MatBadgeModule,
-    MatButtonModule,
-    MatCardModule,
-    MatGridListModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    NavComponent
+    NavComponent,
+    ReactiveFormsModule,
+    ...material
   ]
 })
 export class CoreModule { }

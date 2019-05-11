@@ -3,6 +3,7 @@ import { Sandwich } from '../../core/model/sandwich.model';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { SandwichService } from '../../core/services/sandwich.service';
 import { SandwichEnum } from '../../core/enum/sandwich-enum.enum';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-products',
@@ -12,10 +13,20 @@ import { SandwichEnum } from '../../core/enum/sandwich-enum.enum';
 })
 export class ProductsComponent implements OnInit {
   public products: Sandwich[];
+  panelOpenState = false;
 
   constructor(
     private sandwichService: SandwichService
   ) { }
+
+  public formulario: FormGroup = new FormGroup({
+    email: new FormControl('', Validators.compose([
+      Validators.required
+    ])),
+    age: new FormControl('', Validators.compose([
+      Validators.required
+    ]))
+  }, { updateOn: 'blur' });
 
   ngOnInit() {
     this.getAllSandwichesFromService();
@@ -33,6 +44,7 @@ export class ProductsComponent implements OnInit {
           // console.log('entrou:', this.products);
           response.forEach(element => {
             this.setImageUrl(element);
+            // console.log(element);
             this.products.push(element);
           });
           // console.log('prod:', this.products);

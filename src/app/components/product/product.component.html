@@ -1,17 +1,20 @@
-<mat-card class="example-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{product.name}}</mat-card-title>
-    <mat-card-subtitle>R$ {{product.value}}</mat-card-subtitle>
+<mat-card class="product-card z-depth-2">
+  <mat-card-header *ngIf="false">
+    <mat-card-title>R$ {{product.value}}</mat-card-title>
+    <mat-card-subtitle>{{product.name}}</mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image src="{{product.imageUrl}}" alt="Photo of {{product.name}}">
   <mat-card-content>
-    <p> Ingredientes:</p><br/>
+    <p> Ingredientes:</p><br />
     <ul>
       <li *ngFor="let ing of product.ingredients">{{ing.name}}</li>
     </ul>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-icon-button (click)="addProduct(product)"><mat-icon >add_shopping_cart</mat-icon></button>
+    <button mat-fab (click)="addProduct(product)" color="accent"
+      [ngClass]="{'mat-elevation-z6 pulse' : addHover, 'mat-elevation-z2': !addHover}" (mouseenter)="addHover = true"
+      (mouseleave)="addHover = false">
+      <mat-icon>add_shopping_cart</mat-icon>
+    </button>
   </mat-card-actions>
 </mat-card>

@@ -1,4 +1,10 @@
 .footer {
   color: #ffffff;
   background: #424242;
+  min-height: 4rem;
+
+  & ~ span {
+    margin-top: 1rem;
+  }
 }
+

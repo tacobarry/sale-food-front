@@ -1,23 +1,89 @@
-<mat-grid-list cols="3" rowHeight="1:1">
-  <mat-grid-tile></mat-grid-tile>
-  <mat-grid-tile>
-    <mat-card class="example-card">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{product.name}}</mat-card-title>
-        <mat-card-subtitle>R$ {{product.value}}</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="{{product.imageUrl}}" alt="Photo of {{product.name}}">
-      <mat-card-content>
-        <p> Ingredientes:</p><br/>
-        <ul>
-          <li *ngFor="let ing of product.ingredients">{{ing.name}}</li>
-        </ul>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-icon-button (click)="addProduct(product)"><mat-icon >add_shopping_cart</mat-icon></button>
-      </mat-card-actions>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile></mat-grid-tile>
-</mat-grid-list>
+<!-- ingredients: -->
+<!-- <mat-list role="list" *ngFor="let ingredient of ingredients">
+      <mat-list-item role="listitem">
+        <mat-card-subtitle>R$ {{ingredient.value}}</mat-card-subtitle> - {{ingredient.name}}
+      </mat-list-item>
+    </mat-list> -->
+<div class="container-fluid">
+  <div class="d-flex justify-content-center">
+    <div class="col col-md-5">
+
+
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Ingredientes Adicionais</mat-card-title>
+        </mat-card-header>
+        <mat-expansion-panel *ngFor="let ingredient of ingredients">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              R$ {{ingredient.value.toFixed(2)}}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{ingredient.name}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <button mat-icon-button (click)="removeIngredient({ 'id': ingredient.id, 'ingredient': ingredient })" color="accent" [ngClass]="{'mat-elevation-z6 pulse' : removeHover, 'mat-elevation-z2': !removeHover}"
+            (mouseenter)="removeHover = true" (mouseleave)="removeHover = false">
+              <mat-icon >remove_circle_outline</mat-icon>
+          </button>
+
+          <mat-form-field class="">
+            <input matInput type="number" placeholder="Quantidade" disabled [(value)]="ingredientQuantity[ingredient.id.toString()]" [min]="0" [max]="10">
+          </mat-form-field>
+
+          <button mat-icon-button (click)="addIngredient({'id': ingredient.id, 'ingredient': ingredient})" color="accent" [ngClass]="{'mat-elevation-z6 pulse' : addHover, 'mat-elevation-z2': !addHover}"
+            (mouseenter)="addHover = true" (mouseleave)="addHover = false">
+              <mat-icon >add_circle_outline</mat-icon>
+          </button>
+
+        </mat-expansion-panel>
+      </mat-card>
+
+
+      <mat-card>
+          <div class="d-flex justify-content-around">
+            <div class="col-1">
+              <strong>Subtotal:</strong>
+            </div>
+            <div class="col-4">
+              <mat-card-subtitle>
+                R$ {{(itemCart.value -discount()).toFixed(2)}}
+              </mat-card-subtitle>
+            </div>
+            <div class="col-1">
+              <button mat-mini-fab (click)="removeItem()" color="accent" [ngClass]="{'mat-elevation-z6 pulse' : removeCartHover, 'mat-elevation-z2': !removeCartHover}"
+                (mouseenter)="removeCartHover = true" (mouseleave)="removeCartHover = false">
+                  <mat-icon >remove_shopping_cart</mat-icon>
+              </button>
+            </div>
+            <div class="col-1">
+              <button mat-mini-fab (click)="addItem()" color="accent" [ngClass]="{'mat-elevation-z6 pulse' : addCartHover, 'mat-elevation-z2': !addCartHover}"
+                (mouseenter)="addCartHover = true" (mouseleave)="addCartHover = false">
+                  <mat-icon >add_shopping_cart</mat-icon>
+              </button>
+            </div>
+          </div>
+        </mat-card>
+
+
+    </div>
+
+    <div class="col col-md-3">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{product.name}}</mat-card-title>
+          <mat-card-subtitle>R$ {{product.value.toFixed(2)}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{product.imageUrl}}" alt="Photo of {{product.name}}">
+        <mat-card-content>
+          <p> Ingredientes:</p><br />
+          <ul>
+            <li *ngFor="let ing of product.ingredients">{{ing.name}}</li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -13,6 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ProductComponent implements OnInit {
   @Input()
   public product: Sandwich;
+  public addHover: boolean;
 
   constructor(
     private itemCartservice: ItemCartService,

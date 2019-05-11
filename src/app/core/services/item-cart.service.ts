@@ -31,8 +31,24 @@ export class ItemCartService {
       'Content-Type': 'application/json'
     });
 
+    const ingredientArray: Number[] = [];
+    itemCart.aditionalList.forEach((item) => {
+      ingredientArray.push(item.id);
+    });
+
+    const body = {
+      productId: `${itemCart.sandwich.id}`,
+      message: undefined,
+      ingredientArray
+    };
+    if (!!itemCart.message) {
+      body.message = `${itemCart.message}`;
+    }
+
+    console.log(body);
+
     return this.http.post(`${URL_API}/itemcart`,
-      JSON.stringify(itemCart),
+      body,
     {
       headers: header,
       responseType: 'json',

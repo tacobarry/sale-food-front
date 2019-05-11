@@ -20,7 +20,7 @@ constructor(
     this._id = _id || 0;
     this._name = _name || '';
     this._value = _value || 0;
-    this._aditionalList = _aditionalList;
+    this._aditionalList = _aditionalList || [];
   }
 
   set id(id: number) {
@@ -44,6 +44,10 @@ constructor(
   }
 
   get value() {
+    this._value = this._sandwich.value;
+    this._aditionalList.forEach((elem) => {
+      this._value += elem.value;
+    });
     return this._value;
   }
 
@@ -73,5 +77,24 @@ constructor(
 
   public addAditional(i: Ingredient) {
     this._aditionalList.push(i);
+  }
+
+  public removeAditional(i: Ingredient) {
+    let list: Ingredient[] = [];
+    let findElem = false;
+    let countElem = 0;
+    console.log(this._aditionalList);
+    this._aditionalList.forEach((elem) => {
+      list.push(elem);
+      if (elem.id === i.id) {
+        countElem++;
+        findElem = true;
+      }
+      if (findElem && countElem === 1) {
+        list.pop();
+      }
+    });
+    this._aditionalList = list;
+    console.log(this._aditionalList);
   }
 }
