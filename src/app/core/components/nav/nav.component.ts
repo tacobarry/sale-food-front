@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, OnChanges, SimpleChanges, } from '@angular/core';
 import { Purchase } from '../../model/purchase.model';
 import { EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterStateSnapshot, Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -19,7 +19,8 @@ export class NavComponent implements OnInit, OnChanges {
   @Output() navBarOutput = new EventEmitter();
 
   constructor(
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -28,13 +29,24 @@ export class NavComponent implements OnInit, OnChanges {
     this.checkRoute(this.activatedRoute);
   }
 
+  goto() {
+    this.router.navigate(['/']);
+  }
+
+  gotoPurchase() {
+    this.router.navigate(['/compra/novo']);
+  }
+
+// tslint:disable-next-line: use-life-cycle-interface
   ngDoCheck() {
     this.checkRoute(this.activatedRoute);
   }
 
   private checkRoute(route: ActivatedRoute) {
     // console.log(route.url.value[0].path);
+// tslint:disable-next-line: no-string-literal
     if (route.url['value'] !== undefined) {
+// tslint:disable-next-line: no-string-literal
       switch (route.url['value'][0].path) {
         case '/produtos': {
           this.route.title = 'Produtos';
@@ -44,12 +56,12 @@ export class NavComponent implements OnInit, OnChanges {
           this.route.title = 'Carrinho';
           break;
         }
-        case '/item': {
+        case '/item-da-compra': {
           this.route.title = 'Item do Pedido';
           break;
         }
         default : {
-          this.route.title = 'Produtos';
+          this.route.title = 'Sale Food';
           break;
         }
       }

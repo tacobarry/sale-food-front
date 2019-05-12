@@ -1,9 +1,3 @@
-<!-- ingredients: -->
-<!-- <mat-list role="list" *ngFor="let ingredient of ingredients">
-      <mat-list-item role="listitem">
-        <mat-card-subtitle>R$ {{ingredient.value}}</mat-card-subtitle> - {{ingredient.name}}
-      </mat-list-item>
-    </mat-list> -->
 <div class="container-fluid">
   <div class="d-flex justify-content-center">
     <div class="col col-md-5">
@@ -23,18 +17,21 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
 
-          <button mat-icon-button (click)="removeIngredient({ 'id': ingredient.id, 'ingredient': ingredient })" color="accent" [ngClass]="{'mat-elevation-z6 pulse' : removeHover, 'mat-elevation-z2': !removeHover}"
+          <button mat-icon-button (click)="removeIngredient({ 'id': ingredient.id, 'ingredient': ingredient })"
+            color="accent" [ngClass]="{'mat-elevation-z6 pulse' : removeHover, 'mat-elevation-z2': !removeHover}"
             (mouseenter)="removeHover = true" (mouseleave)="removeHover = false">
-              <mat-icon >remove_circle_outline</mat-icon>
+            <mat-icon>remove_circle_outline</mat-icon>
           </button>
 
           <mat-form-field class="">
-            <input matInput type="number" placeholder="Quantidade" disabled [(value)]="ingredientQuantity[ingredient.id.toString()]" [min]="0" [max]="10">
+            <input matInput type="number" placeholder="Quantidade" disabled
+              [(value)]="ingredientQuantity[ingredient.id.toString()]" [min]="0" [max]="10">
           </mat-form-field>
 
-          <button mat-icon-button (click)="addIngredient({'id': ingredient.id, 'ingredient': ingredient})" color="accent" [ngClass]="{'mat-elevation-z6 pulse' : addHover, 'mat-elevation-z2': !addHover}"
+          <button mat-icon-button (click)="addIngredient({'id': ingredient.id, 'ingredient': ingredient})"
+            color="accent" [ngClass]="{'mat-elevation-z6 pulse' : addHover, 'mat-elevation-z2': !addHover}"
             (mouseenter)="addHover = true" (mouseleave)="addHover = false">
-              <mat-icon >add_circle_outline</mat-icon>
+            <mat-icon>add_circle_outline</mat-icon>
           </button>
 
         </mat-expansion-panel>
@@ -42,29 +39,31 @@
 
 
       <mat-card>
-          <div class="d-flex justify-content-around">
-            <div class="col-1">
-              <strong>Subtotal:</strong>
-            </div>
-            <div class="col-4">
-              <mat-card-subtitle>
-                R$ {{(itemCart.value -discount()).toFixed(2)}}
-              </mat-card-subtitle>
-            </div>
-            <div class="col-1">
-              <button mat-mini-fab (click)="removeItem()" color="accent" [ngClass]="{'mat-elevation-z6 pulse' : removeCartHover, 'mat-elevation-z2': !removeCartHover}"
-                (mouseenter)="removeCartHover = true" (mouseleave)="removeCartHover = false">
-                  <mat-icon >remove_shopping_cart</mat-icon>
-              </button>
-            </div>
-            <div class="col-1">
-              <button mat-mini-fab (click)="addItem()" color="accent" [ngClass]="{'mat-elevation-z6 pulse' : addCartHover, 'mat-elevation-z2': !addCartHover}"
-                (mouseenter)="addCartHover = true" (mouseleave)="addCartHover = false">
-                  <mat-icon >add_shopping_cart</mat-icon>
-              </button>
-            </div>
+        <div class="d-flex justify-content-around">
+          <div class="col-1">
+            <strong>Subtotal:</strong>
           </div>
-        </mat-card>
+          <div class="col-4">
+            <mat-card-subtitle>
+              R$ {{(itemCart.value - discount()).toFixed(2)}}
+            </mat-card-subtitle>
+          </div>
+          <div class="col-1">
+            <button mat-mini-fab (click)="removeItem()" color="accent" matTooltip="Desistir deste produto" [matTooltipPosition]="after.value"
+              [ngClass]="{'mat-elevation-z6 pulse' : removeCartHover, 'mat-elevation-z2': !removeCartHover}"
+              (mouseenter)="removeCartHover = true" (mouseleave)="removeCartHover = false">
+              <mat-icon>remove_shopping_cart</mat-icon>
+            </button>
+          </div>
+          <div class="col-1">
+            <button mat-mini-fab (click)="addItem()" color="accent" matTooltip="Adicionar produto" [matTooltipPosition]="before.value"
+              [ngClass]="{'mat-elevation-z6 pulse' : addCartHover, 'mat-elevation-z2': !addCartHover}"
+              (mouseenter)="addCartHover = true" (mouseleave)="addCartHover = false">
+              <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-card>
 
 
     </div>

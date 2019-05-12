@@ -6,6 +6,8 @@ import { ItemCart } from '../../../core/model/item-cart.model';
 import { Ingredient } from 'src/app/core/model/ingredient.model';
 import { IngredientService } from 'src/app/core/services/ingredient.service';
 import { IngredientEnum } from 'src/app/core/enum/ingredient-enum.enum';
+import { FormControl } from '@angular/forms';
+import { TooltipPosition } from '@angular/material';
 
 
 const QUANTITY_OF_CHEESE_FOR_DISCOUNT = 3;
@@ -16,15 +18,16 @@ const DISCOUNT_OF_LIGHT = 0.1;
   selector: 'app-new',
   templateUrl: './new.component.html',
   styleUrls: ['./new.component.scss'],
-  providers: [ IngredientService, ItemCartService ]
+  providers: [IngredientService, ItemCartService]
 })
 export class NewComponent implements OnInit {
 
   public ingredients: Ingredient[];
-  public ingredientQuantity: Number[];
+  public ingredientQuantity: number[];
   public itemCart: ItemCart;
   private product: Sandwich;
-  private nav: Navigation;
+  private before: FormControl;
+  private after: FormControl;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -33,7 +36,21 @@ export class NewComponent implements OnInit {
     private ingredientService: IngredientService
   ) {
     this.product = this.router.getCurrentNavigation().extras.state.product;
+
+    const beforePosition: TooltipPosition = 'before';
+    const afterPosition: TooltipPosition = 'after';
+    this.before = new FormControl(beforePosition);
+    this.after = new FormControl(afterPosition);
     // console.log(this.product);
+  }
+
+  ngOnInit() {
+    // console.log(history.state.product);
+    this.product = history.state.product;
+    // this.product = this.nav.extras.state.product;
+    this.setIngredients();
+    // console.log('entrou', this.activatedRoute, window.history.state);
+    this.itemCart = new ItemCart(null, this.product.name, null, null, this.product, []);
   }
 
   setIngredients() {
@@ -51,21 +68,12 @@ export class NewComponent implements OnInit {
       });
   }
 
-  ngOnInit() {
-    // console.log(history.state.product);
-    this.product = history.state.product;
-    // this.product = this.nav.extras.state.product;
-    this.setIngredients();
-    // console.log('entrou', this.activatedRoute, window.history.state);
-    this.itemCart = new ItemCart(null, this.product.name, null, null, this.product, []);
-  }
-
   removeItem() {
     this.router.navigate(['/produtos']);
   }
 
   private getArrayOfIngredienteId(id: number) {
-    const arr: Number[] = [];
+    const arr: number[] = [];
     for (let i = 0; i < this.ingredientQuantity[id]; i++) {
       arr.push(id);
     }
@@ -88,7 +96,7 @@ export class NewComponent implements OnInit {
     });
     // console.log(newArrayOfIngredients);
     this.itemCart.aditionalList = newArrayOfIngredients;
-    console.log(this.itemCart.aditionalList);
+    this.itemCart.setDiscount(this.discount());
 
     // console.log(this.ingredientQuantity, ingredientsArr);
 
@@ -105,7 +113,7 @@ export class NewComponent implements OnInit {
     this.itemCartService.createNewItemCart(this.itemCart)
       .then((resp) => {
         this.itemCart = resp.body;
-        console.log(this.itemCart);
+        // console.log(this.itemCart);
       })
       .then(() => {
         this.router.navigate(['/compra/nova'], { state: { itemCart: this.itemCart } });
@@ -183,10 +191,10 @@ export class NewComponent implements OnInit {
       }
     }
     if (countHamburguer > 0) {
-      if ( countHamburguer % QUANTITY_OF_HAMBURGUER_FOR_DISCOUNT === 0 ) {
+      if (countHamburguer % QUANTITY_OF_HAMBURGUER_FOR_DISCOUNT === 0) {
         // console.log(hambuerguer.value, countHamburguer, Math.floor( countHamburguer / QUANTITY_OF_HAMBURGUER_FOR_DISCOUNT ));
       }
-      return hambuerguer.value * Math.floor( countHamburguer / QUANTITY_OF_HAMBURGUER_FOR_DISCOUNT );
+      return hambuerguer.value * Math.floor(countHamburguer / QUANTITY_OF_HAMBURGUER_FOR_DISCOUNT);
     }
     return 0;
   }
@@ -204,7 +212,7 @@ export class NewComponent implements OnInit {
     if (ingredients === undefined) {
       return 0;
     }
-// tslint:disable-next-line: prefer-for-of
+    // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < ingredients.length; i++) {
       if (IngredientEnum.CHEESE === ingredients[i].id) {
         countCheese++;
@@ -219,7 +227,7 @@ export class NewComponent implements OnInit {
       }
     }
     if (countCheese > 0) {
-      return cheese.value * Math.floor( countCheese / QUANTITY_OF_CHEESE_FOR_DISCOUNT );
+      return cheese.value * Math.floor(countCheese / QUANTITY_OF_CHEESE_FOR_DISCOUNT);
     }
     return 0;
   }
@@ -237,7 +245,7 @@ export class NewComponent implements OnInit {
     if (ingredients === undefined) {
       return 0;
     }
-// tslint:disable-next-line: prefer-for-of
+    // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < ingredients.length; i++) {
       if (!haveLetuce) {
         haveLetuce = IngredientEnum.LETUCE === ingredients[i].id;
@@ -248,7 +256,7 @@ export class NewComponent implements OnInit {
         break;
       }
     }
-// tslint:disable-next-line: prefer-for-of
+    // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < sandwich.ingredients.length; i++) {
       if (!haveLetuce) {
         haveLetuce = IngredientEnum.LETUCE === sandwich.ingredients[i].id;

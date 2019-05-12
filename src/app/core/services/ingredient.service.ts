@@ -21,7 +21,7 @@ export class IngredientService {
       observe: 'response'
     })
       .toPromise()
-      .then((resposta) => resposta.body)
+      .then((response) => response.body)
       .catch((err: any) => console.log(err));
   }
 }

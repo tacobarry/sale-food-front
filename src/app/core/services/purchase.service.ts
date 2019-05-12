@@ -6,6 +6,28 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PurchaseService {
+  createNewPurchase(config: { where: string, itemcartArr: number[] }) {
+    const header: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    const body = {
+      where: `${config.where}`,
+      delivered: false,
+      itemCartArr: config.itemcartArr
+    };
+
+    return this.http.post(`${URL_API}/purchase`,
+      body,
+    {
+      headers: header,
+      responseType: 'json',
+      observe: 'response'
+    })
+      .toPromise()
+      .then((response) => response.body)
+      .catch((err: any) => console.log(err));
+  }
 
   constructor(
     private http: HttpClient

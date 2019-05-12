@@ -1,10 +1,11 @@
-<mat-toolbar color="primary">
+<mat-toolbar>
   <mat-toolbar-row>
     <button mat-icon-button (click)="toggleNavBar($event)"><mat-icon >{{menuIcon.name}}</mat-icon></button>
-    <span>{{route.title}}</span>
+    <span (click)="goto()">{{route.title}}</span>
     <span class="sidebar-spacer"></span>
     <button mat-icon-button>
-      <mat-icon aria-label="Compra" matBadge="{{countItemCartList}}" matBadgeColor="warn" class="sidebar-icon" aria-hidden="false" >shopping_cart</mat-icon>
+      <mat-icon aria-label="Compra" matBadge="{{countItemCartList}}" matBadgeColor="warn" class="sidebar-icon" aria-hidden="false"
+        (click)="gotoPurchase()">shopping_cart</mat-icon>
     </button>
   </mat-toolbar-row>
 

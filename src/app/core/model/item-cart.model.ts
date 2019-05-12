@@ -2,8 +2,9 @@ import { Sandwich } from './sandwich.model';
 import { Ingredient } from './ingredient.model';
 
 export class ItemCart {
+  private discount: number;
 
-constructor(
+  constructor(
 // tslint:disable-next-line: variable-name
     private _id: number,
 // tslint:disable-next-line: variable-name
@@ -83,7 +84,6 @@ constructor(
     let list: Ingredient[] = [];
     let findElem = false;
     let countElem = 0;
-    console.log(this._aditionalList);
     this._aditionalList.forEach((elem) => {
       list.push(elem);
       if (elem.id === i.id) {
@@ -95,6 +95,13 @@ constructor(
       }
     });
     this._aditionalList = list;
-    console.log(this._aditionalList);
+  }
+
+  setDiscount(discount: number) {
+    this.discount = discount;
+  }
+
+  getDiscount() {
+    return this.discount;
   }
 }

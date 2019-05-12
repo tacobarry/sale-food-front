@@ -1,14 +1,6 @@
-<!-- <mat-grid-list cols="2" rowHeight="3:4">
-  <mat-grid-tile *ngFor="let product of products">
-    <app-product [product]="product"></app-product>
-  </mat-grid-tile>
-</mat-grid-list> -->
-
-
-
 <div class="container-fluid">
   <div class="d-flex justify-content-center">
-    <div class="col col-md-8 col-md-6">
+    <div class="col col-md-8 col-lg-4">
       <mat-accordion *ngFor="let product of products">
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
@@ -19,11 +11,9 @@
               {{product.name}}
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <div class="container">
-            <div class="d-flex justify-content-center">
-              <div class="col col-md-8 col-lg-5">
-                <app-product [product]="product"></app-product>
-              </div>
+          <div class="d-flex justify-content-center">
+            <div class="col-10 col-md-8 col-lg-10">
+              <app-product [product]="product"></app-product>
             </div>
           </div>
         </mat-expansion-panel>

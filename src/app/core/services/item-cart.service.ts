@@ -22,7 +22,7 @@ export class ItemCartService {
       observe: 'response'
     })
       .toPromise()
-      .then((response) => response)
+      .then((response) => response.body)
       .catch((err: any) => console.log(err));
   }
 
@@ -31,7 +31,7 @@ export class ItemCartService {
       'Content-Type': 'application/json'
     });
 
-    const ingredientArray: Number[] = [];
+    const ingredientArray: number[] = [];
     itemCart.aditionalList.forEach((item) => {
       ingredientArray.push(item.id);
     });
@@ -45,7 +45,7 @@ export class ItemCartService {
       body.message = `${itemCart.message}`;
     }
 
-    console.log(body);
+    // console.log(body);
 
     return this.http.post(`${URL_API}/itemcart`,
       body,

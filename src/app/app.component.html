@@ -1,36 +1,15 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <app-nav [receiveClickNavbar]="navBarClicked" (navBarOutput)="toggleSideNav($event)"></app-nav>
 
 <mat-sidenav-container class="example-container" (backdropClick)="toggleSideNav()" *ngIf="shouldRun">
   <mat-sidenav #sidenav [mode]="push">
-    <p><button mat-button (click)="toggleSideNav()">Meus Pedidos</button></p>
+    <p><button mat-button (click)="toggleSideNav()" disabled>Meus Pedidos</button></p>
     <br/><br/>
-    <p><button mat-button (click)="toggleSideNav()" [routerLink]="['/produtos']" routerLinkActive="router-link-active" >Produtos</button></p>
-    <p><button mat-button (click)="toggleSideNav()">Carrinho de Compra</button></p>
+    <p><button mat-button (click)="toggleSideNav()" [routerLink]="['/produtos']" routerLinkActive="router-link-active" >Lanches</button></p>
+    <p><button mat-button (click)="toggleSideNav()" [routerLink]="['/compra/novo']" routerLinkActive="router-link-active">Carrinho de Compra</button></p>
 
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <div style="text-align:center">
-      <h1 class="painel-title">
-        Bem vindo ao {{ title }}!
-      </h1>
-      <!-- <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="> -->
-    </div>
-    <!-- <form>
-      <h4>Basic mat-select</h4>
-    <mat-form-field>
-      <mat-label>Favorite food</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let food of foods" [value]="food.value">
-          {{food.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-icon>shopping_cart</mat-icon>
-    <mat-icon>add_shopping_cart</mat-icon>
-    <mat-icon>remove_shopping_cart</mat-icon>
-    </form> -->
 
     <router-outlet></router-outlet>
 

@@ -23,7 +23,8 @@ describe('Purchase', () => {
             11,
             'x-bacon',
             10,
-            [new Ingredient(IngredientEnum.BACON, IngredientEnum.BACON_NAME, 3)]
+            [new Ingredient(IngredientEnum.BACON, IngredientEnum.BACON_NAME, 3)],
+            null
           ),
           []
         )]
