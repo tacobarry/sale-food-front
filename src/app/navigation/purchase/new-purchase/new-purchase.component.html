@@ -10,18 +10,20 @@
   <div class=" justify-content-center d-none d-sm-flex d-lg-flex" *ngIf="haveItensIntoCart">
     <mat-card>
       <div class="d-flex justify-content-around">
-        <div class="col-1">
+        <div class="col-2">
           <strong>Total:</strong>
         </div>
-        <div class="col-2">
+        <div class="col-8">
           <mat-card-subtitle>
-            R$ xx
+            R$ {{amount}} (com o desconto)
           </mat-card-subtitle>
         </div>
-        <div class="col-4">
+      </div>
+      <div class="d-flex justify-content-between">
+        <div class="col-5">
           <button mat-raised-button color="accent" (click)="keepBuying()">Continuar comprando</button>
         </div>
-        <div class="col-4">
+        <div class="col-5">
           <button mat-stroked-button color="accent" (click)="endPurchase()">Finalizar compra</button>
         </div>
       </div>
@@ -37,7 +39,7 @@
           </div>
           <div class="col-6">
             <mat-card-subtitle>
-              R$ xx
+              R$ {{amount}} (com o desconto)
             </mat-card-subtitle>
           </div>
         </div>
@@ -62,7 +64,7 @@
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              R${{item.value.toFixed(2)}} - [{{item.discount}}]
+              R${{item.value.toFixed(2)}}
             </mat-panel-title>
             <mat-panel-description>
               {{item.name}}

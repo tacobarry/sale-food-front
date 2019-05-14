@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemCart } from 'src/app/core/model/item-cart.model';
+import { ItemCart } from '../../../core/model/item-cart.model';
 import { Router } from '@angular/router';
-import { PurchaseService } from 'src/app/core/services/purchase.service';
-import { ItemCartService } from 'src/app/core/services/item-cart.service';
-import { Purchase } from 'src/app/core/model/purchase.model';
+import { PurchaseService } from '../../../core/services/purchase.service';
+import { ItemCartService } from '../../../core/services/item-cart.service';
+import { Purchase } from '../../../core/model/purchase.model';
+import { Discount } from '../../../core/components/utils/discount';
+import { Sandwich } from '../../../core/model/sandwich.model';
 
 @Component({
   selector: 'app-new',
@@ -17,9 +19,12 @@ export class NewPurchaseComponent implements OnInit {
   private itemcartArr: number[];
   private itemCarts: ItemCart[];
   private purchase: Purchase;
+  private discount: Discount;
 
   private purchaseArr: number[];
   panelOpenState = true;
+
+  amount: number;
 
   constructor(
     private purchaseService: PurchaseService,
@@ -32,6 +37,7 @@ export class NewPurchaseComponent implements OnInit {
     this.receiveItemCartFromHistory();
     this.verifyItensIntoPurchase();
     this.retrieveAllItensFromStorage();
+    this.initializeAmount();
     // console.log(this.itemCart);
   }
 
@@ -54,6 +60,25 @@ export class NewPurchaseComponent implements OnInit {
     }
   }
 
+  private initializeItemCarts() {
+    if (this.itemCart !== undefined) {
+      if (this.itemCarts === undefined) {
+        this.itemCarts = [];
+      }
+      this.itemCarts.push(this.itemCart);
+    }
+  }
+
+  private initializeAmount() {
+    this.amount = 0;
+    if (this.itemCarts !== undefined) {
+      this.itemCarts.forEach((item) => {
+        const discountForThisItem = this.calcDiscount(item.sandwich, item);
+        this.amount += item.value - discountForThisItem;
+      });
+    }
+  }
+
   retrieveAllItensFromStorage() {
     if (this.itemcartArr.length > 0) {
       this.itemCartService.getAllItemCarts()
@@ -61,28 +86,21 @@ export class NewPurchaseComponent implements OnInit {
           this.itemCarts = itemcarts;
         })
         .then(() => {
-          // console.log(this.itemCarts);
           this.itemCarts = this.itemCarts.filter((elem) => {
-            // console.log(this.itemcartArr);
-            for (let id of this.itemcartArr) {
+            for (const id of this.itemcartArr) {
               if (elem.id === id) {
                 return elem;
               }
             }
           });
-          // console.log(this.itemCarts);
         })
         .then(() => {
-          if (this.itemCart !== undefined) {
-            if (this.itemCarts === undefined) {
-              this.itemCarts = [];
-            }
-            this.itemCarts.push(this.itemCart);
-            // console.log('retrieveAllItensFromStorage', this.itemCarts);
-          }
+          this.initializeItemCarts();
+          this.initializeAmount();
         });
+    } else {
+      this.initializeItemCarts();
     }
-
   }
 
   endPurchase() {
@@ -135,6 +153,11 @@ export class NewPurchaseComponent implements OnInit {
     if (this.itemcartArr !== null && this.itemcartArr.length > 0) {
       this.haveItensIntoCart = true;
     }
+  }
+
+  private calcDiscount(product: Sandwich, itemCart: ItemCart) {
+    this.discount = new Discount(product, itemCart);
+    return this.discount.discount();
   }
 
 }
