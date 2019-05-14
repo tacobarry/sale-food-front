@@ -59,4 +59,20 @@ export class ItemCartService {
       .catch((err: any) => console.log(err));
   }
 
+  public deleteItemCart(id: number) {
+    const header: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.delete(`${URL_API}/itemcart/${id}`,
+    {
+      headers: header,
+      responseType: 'json',
+      observe: 'response'
+    })
+      .toPromise()
+      .then((response) => response)
+      .catch((err) => console.log(err));
+  }
+
 }

@@ -27,8 +27,8 @@ export class NewPurchaseComponent implements OnInit {
   amount: number;
 
   constructor(
-    private purchaseService: PurchaseService,
     private itemCartService: ItemCartService,
+    private purchaseService: PurchaseService,
     private router: Router
   ) { }
 
@@ -160,4 +160,19 @@ export class NewPurchaseComponent implements OnInit {
     return this.discount.discount();
   }
 
+  private reload() {
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigateByUrl(this.router.url).then(() => {
+      this.router.onSameUrlNavigation = 'ignore';
+    });
+  }
+
+  removeItemCart(id: number) {
+    this.itemCartService.deleteItemCart(id);
+    if (this.itemcartArr !== null && this.itemcartArr.length > 0) {
+      this.itemcartArr = this.itemcartArr.filter((elem) => elem !== id );
+    }
+    sessionStorage.setItem('itemCartArr', JSON.stringify(this.itemcartArr));
+    window.location.reload();
+  }
 }

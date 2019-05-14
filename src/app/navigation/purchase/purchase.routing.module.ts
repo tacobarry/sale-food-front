@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NewPurchaseComponent } from './new-purchase/new-purchase.component';
 import { FinalizedComponent } from '../finalized/finalized.component';
+import { CommonModule } from '@angular/common';
+import { CoreModule } from 'src/app/core/core.module';
 
 const purchaseRoutes: Routes = [
   { path: 'compra', component: NewPurchaseComponent,
@@ -14,7 +16,11 @@ const purchaseRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(purchaseRoutes)],
+  imports: [
+    CommonModule,
+    CoreModule,
+    RouterModule.forChild(purchaseRoutes)
+  ],
   declarations: [],
   exports: [RouterModule]
 })

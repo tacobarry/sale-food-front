@@ -72,7 +72,10 @@
           </mat-expansion-panel-header>
           <div class="d-flex justify-content-center">
             <div class="col-10 col-md-8 col-lg-10">
-              {{item | json}}
+              <button mat-icon-button color="accent" type="button" #tooltip="matTooltip" (click)="removeItemCart(item.id)"
+                matTooltip="Remover item" matTooltipPosition="right">
+                <mat-icon aria-label="">remove_shopping_cart</mat-icon>
+              </button>
             </div>
           </div>
         </mat-expansion-panel>
